@@ -30,12 +30,6 @@ export default function MetodologiaPage() {
             enti statistici e istituzioni riconosciute.
           </p>
 
-          <h2>Aggiornamento</h2>
-          <p>
-            I dati vengono controllati e aggiornati con cadenza mensile. La data dell'ultimo
-            aggiornamento e' sempre visibile in homepage.
-          </p>
-
           <h2>Trattamento e conversioni</h2>
           <p>
             Quando un valore richiede una conversione (ad esempio tra valute o unita' di misura),

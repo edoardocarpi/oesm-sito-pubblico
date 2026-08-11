@@ -23,9 +23,8 @@ export default function NoteLegaliPage() {
         <div className="container container-stretta articolo-corpo">
           <h2>Gestione del sito</h2>
           <p>
-            L'Osservatorio Economico di San Marino (OESM) e' gestito da [Nome dell'organizzazione
-            o persona responsabile], [Sede/Indirizzo, se disponibile]. Per contatti:{' '}
-            info@oesm.net.
+            L'Osservatorio Economico di San Marino (OESM) e' gestito da Edoardo Carpi, con sede
+            in Strada Garibaldi 2/G, Parma, Italia. Per contatti: info@oesm.net.
           </p>
 
           <h2>Natura dei contenuti</h2>
@@ -51,12 +50,10 @@ export default function NoteLegaliPage() {
           </p>
 
           <h2>Legge applicabile</h2>
-          <p>Salvo diversa indicazione, questo sito e i suoi contenuti sono soggetti alla legge della Repubblica di San Marino.</p>
-
-          <p style={{ color: 'var(--muted)', fontSize: 14, marginTop: 40 }}>
-            Questo testo e' un modello di base e non sostituisce una consulenza legale. Si
-            raccomanda una verifica da parte di un professionista prima della pubblicazione
-            definitiva.
+          <p>
+            Questo sito e' gestito da un soggetto con sede in Italia ed e' pertanto soggetto alla
+            legge italiana, anche quando i dati pubblicati fanno riferimento alla Repubblica di
+            San Marino.
           </p>
         </div>
       </article>

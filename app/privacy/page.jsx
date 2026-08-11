@@ -27,8 +27,7 @@ export default function PrivacyPage() {
 
           <h2>Titolare del trattamento</h2>
           <p>
-            [Nome dell'organizzazione o persona responsabile], contattabile all'indirizzo email{' '}
-            info@oesm.net.
+            Edoardo Carpi, Strada Garibaldi 2/G, Parma, Italia. Contatto: info@oesm.net.
           </p>
 
           <h2>Dati raccolti</h2>
@@ -53,17 +52,17 @@ export default function PrivacyPage() {
             profilazione o marketing.
           </p>
 
+          <h2>Normativa applicabile</h2>
+          <p>
+            Il trattamento avviene nel rispetto del Regolamento (UE) 2016/679 (GDPR) e del Codice
+            in materia di protezione dei dati personali (D.Lgs. 196/2003, come modificato dal
+            D.Lgs. 101/2018).
+          </p>
+
           <h2>Diritti dell'interessato</h2>
           <p>
             Per qualsiasi richiesta relativa ai propri dati personali, e' possibile scrivere a{' '}
             info@oesm.net.
-          </p>
-
-          <p style={{ color: 'var(--muted)', fontSize: 14, marginTop: 40 }}>
-            Questo testo e' un modello di base e non sostituisce una consulenza legale. Prima
-            della pubblicazione definitiva si raccomanda una verifica da parte di un
-            professionista, in particolare riguardo alla normativa sammarinese sulla protezione
-            dei dati personali e a un'eventuale applicabilita' del GDPR per i visitatori europei.
           </p>
         </div>
       </article>

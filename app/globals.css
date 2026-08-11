@@ -59,6 +59,7 @@ nav a:hover { color: var(--accent); }
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--line);
+  padding-top: 10px;
 }
 .nav-mobile a { padding: 14px 32px; font-size: 15px; }
 

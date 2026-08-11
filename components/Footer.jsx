@@ -39,7 +39,6 @@ export default async function Footer() {
             <img src="/oesm-logo-blue.png" alt="" className="logo-icona" />
             <span>&copy; {new Date().getFullYear()} Osservatorio Economico di San Marino</span>
           </div>
-          <div>Dati aggiornati mensilmente</div>
         </div>
       </div>
     </footer>

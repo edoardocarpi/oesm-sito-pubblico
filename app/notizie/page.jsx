@@ -11,7 +11,7 @@ const PER_PAGINA = 6
 export async function generateMetadata({ searchParams }) {
   const categoriaAttiva = searchParams?.categoria || ''
   if (!categoriaAttiva) {
-    return { title: 'Notizie', description: "Comunicati e analisi sull'economia di San Marino, aggiornati mensilmente." }
+    return { title: 'Notizie', description: "Comunicati e analisi sull'economia di San Marino." }
   }
   const { data: categoria } = await supabase.from('categorie').select('etichetta').eq('slug', categoriaAttiva).single()
   const etichetta = categoria?.etichetta || categoriaAttiva
@@ -59,7 +59,7 @@ export default async function NotiziePage({ searchParams }) {
       <section className="page-header">
         <div className="container">
           <h1>Notizie e analisi economiche</h1>
-          <p>Comunicati e analisi generati a partire dai dati pubblicati nell'Archivio, con cadenza mensile.</p>
+          <p>Comunicati e analisi generati a partire dai dati pubblicati nell'Archivio.</p>
         </div>
       </section>
 
