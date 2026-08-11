@@ -24,17 +24,17 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function IndicatorePage({ params }) {
-  const [{ data: righe }, { data: categorie }] = await Promise.all([
-    supabase.from('indicatori_dati').select('*').eq('indicator_code', params.slug).order('year', { ascending: true }),
-    supabase.from('categorie').select('slug, etichetta'),
-  ])
+  const { data: righe } = await supabase
+    .from('indicatori_dati')
+    .select('*')
+    .eq('indicator_code', params.slug)
+    .order('year', { ascending: true })
 
   if (!righe || righe.length === 0) {
     notFound()
   }
 
   const meta = righe[0]
-  const etichettaCategoria = categorie?.find((c) => c.slug === meta.category)?.etichetta || meta.category
   const righeConDati = righe.filter((r) => r.value_display && r.value_display !== 'null')
   const serie = righe
     .map((r) => ({ anno: r.year, valore: parseFloat(r.value_display) }))
@@ -46,10 +46,7 @@ export default async function IndicatorePage({ params }) {
   return (
     <>
       <div className="indicatore-titolo">
-        <div>
-          <div className="eyebrow">{etichettaCategoria}</div>
-          <h1>{meta.indicator_it}</h1>
-        </div>
+        <h1>{meta.indicator_it}</h1>
         <ExportButton
           nome={meta.indicator_it}
           code={meta.indicator_code}

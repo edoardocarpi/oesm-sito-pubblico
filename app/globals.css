@@ -259,7 +259,7 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 .dati-intestazione .eyebrow { margin-bottom: 0; }
 
 .dati-nav { padding: 12px 0 8px; }
-.dati-nav-indicatori { border-top: 1px dashed var(--line); margin-top: 4px; padding: 20px 0 24px; }
+.dati-nav-indicatori { border-top: 1px dashed var(--accent); margin-top: 4px; padding: 20px 0 24px; }
 .dati-contenuto { padding-bottom: 72px; }
 
 .indicatore-titolo {
@@ -286,7 +286,7 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 }
 .btn-esporta:hover { border-color: var(--accent); color: var(--accent); }
 
-.indicatore-grafico { border: 1px solid var(--line); border-radius: 4px; padding: 20px; margin-bottom: 32px; }
+.indicatore-grafico { margin-bottom: 32px; }
 .indicatore-serie { margin-bottom: 32px; }
 .indicatore-serie table { width: 100%; max-width: 420px; margin: 0 auto; border-collapse: collapse; }
 .indicatore-serie th, .indicatore-serie td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
