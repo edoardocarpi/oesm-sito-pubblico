@@ -45,22 +45,22 @@ nav a.active { color: var(--ink); }
 nav a:hover { color: var(--accent); }
 
 /* HERO (Home) */
-.hero { padding: 48px 0 56px; border-bottom: 1px solid var(--line); }
+.hero { padding: 32px 0 40px; border-bottom: 1px solid var(--line); }
 .hero-immagine {
   width: 100%;
-  height: 440px;
+  height: 340px;
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   background: var(--blu-castello);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 .hero-immagine img { max-width: 100%; height: 100%; width: auto; object-fit: contain; display: block; }
-.hero-testo-centrato { text-align: center; max-width: 640px; margin: 0 auto; }
-.hero-testo-centrato h1 { font-size: 40px; line-height: 1.2; margin-bottom: 28px; }
-.hero-sub { font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto 20px; }
+.hero-testo { max-width: 640px; }
+.hero-testo h1 { font-size: 34px; line-height: 1.2; margin-bottom: 16px; }
+.hero-sub { font-size: 16px; color: var(--muted); max-width: 520px; margin: 0 0 16px; }
 .btn {
   display: inline-block;
   background: var(--ink);
@@ -68,12 +68,12 @@ nav a:hover { color: var(--accent); }
   font-size: 14px;
   padding: 12px 24px;
   border-radius: 2px;
-  margin-top: 16px;
+  margin-top: 4px;
 }
 .btn:hover { background: #333; }
 .data-strip {
-  margin-top: 48px;
-  padding-top: 28px;
+  margin-top: 32px;
+  padding-top: 24px;
   border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -170,10 +170,10 @@ nav a:hover { color: var(--accent); }
 /* IMMAGINE DI APERTURA (Chi Siamo) */
 .chi-siamo-immagine {
   width: 100%;
-  height: 320px;
+  height: 260px;
   border-radius: 4px;
   overflow: hidden;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
   background: var(--blu-mappa);
   display: flex;
   align-items: center;
@@ -181,11 +181,13 @@ nav a:hover { color: var(--accent); }
 }
 .chi-siamo-immagine img { max-width: 100%; height: 100%; width: auto; object-fit: contain; display: block; }
 
-.chi-siamo-corpo { display: flex; gap: 48px; align-items: flex-start; margin-top: 8px; }
-.chi-siamo-testo { flex: 1; min-width: 260px; }
-.chi-siamo-testo p { max-width: 100%; }
-.chi-siamo-palazzo { flex: 0 0 300px; }
-.chi-siamo-palazzo img { width: 100%; height: auto; border-radius: 4px; display: block; }
+.chi-siamo-corpo {
+  margin-top: 12px;
+  column-count: 2;
+  column-gap: 48px;
+  max-width: none;
+}
+.chi-siamo-corpo p { max-width: none; break-inside: avoid; margin: 0 0 14px; }
 
 /* CONTATTI (Chi siamo) */
 .contatti { padding: 0 0 72px; }
@@ -315,7 +317,7 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 
 /* RESPONSIVE */
 @media (max-width: 800px) {
-  .hero-testo-centrato h1 { font-size: 28px; }
+  .hero-testo h1 { font-size: 28px; }
   .hero-immagine { height: 240px; margin-bottom: 28px; }
   .chi-siamo-immagine { height: 200px; }
   .page-header h1 { font-size: 30px; }
@@ -325,6 +327,5 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
   .dati-layout { grid-template-columns: 1fr; }
   .dati-sidebar { position: static; }
   .about-teaser { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .chi-siamo-corpo { flex-direction: column; }
-  .chi-siamo-palazzo { flex: none; width: 100%; max-width: 240px; }
+  .chi-siamo-corpo { column-count: 1; }
 }

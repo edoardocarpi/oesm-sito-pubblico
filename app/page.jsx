@@ -63,7 +63,7 @@ export default async function HomePage() {
           <div className="hero-immagine">
             <img src="/oesm-san-marino.png" alt="Illustrazione di San Marino" />
           </div>
-          <div className="hero-testo-centrato">
+          <div className="hero-testo">
             <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
             {campi.sottotitolo && <p className="hero-sub">{campi.sottotitolo}</p>}
             {campi.intro && <p className="hero-sub">{campi.intro}</p>}

@@ -40,16 +40,11 @@ export default async function ChiSiamoPage() {
           <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
 
           <div className="chi-siamo-corpo">
-            <div className="chi-siamo-testo">
-              {paragrafi.length > 0 ? (
-                paragrafi.map((p, i) => <p key={i}>{p}</p>)
-              ) : (
-                <p>Testo da inserire nel campo Missione, sezione Pagine del CMS.</p>
-              )}
-            </div>
-            <div className="chi-siamo-palazzo">
-              <img src="/oesm-palazzo.png" alt="Il Palazzo Pubblico di San Marino" />
-            </div>
+            {paragrafi.length > 0 ? (
+              paragrafi.map((p, i) => <p key={i}>{p}</p>)
+            ) : (
+              <p>Testo da inserire nel campo Missione, sezione Pagine del CMS.</p>
+            )}
           </div>
         </div>
       </section>
