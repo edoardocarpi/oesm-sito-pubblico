@@ -48,10 +48,9 @@ export default async function DatiLayout({ children }) {
     <>
       <Header attivo="dati" />
 
-      <section className="page-header">
+      <section className="dati-intestazione">
         <div className="container">
-          <h1>Dati</h1>
-          <p>Serie storiche degli indicatori economici di San Marino, aggiornate mensilmente.</p>
+          <div className="eyebrow">Dati</div>
         </div>
       </section>
 
