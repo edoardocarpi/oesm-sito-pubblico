@@ -19,6 +19,15 @@ export default function IndicatorChart({ dati, unita }) {
   // da quanti anni ci sono, per non affollare il grafico
   const intervalloAnni = Math.max(0, Math.ceil(dati.length / 8) - 1)
 
+  // la larghezza riservata all'asse Y si adatta alla lunghezza reale delle
+  // etichette (es. "95" ha bisogno di molto meno spazio di "1.9 Mld"),
+  // invece di riservare sempre lo stesso spazio fisso: su schermi stretti
+  // uno spazio fisso troppo largo per etichette corte lascia un vuoto
+  // evidente a sinistra del grafico
+  const valoriFormattati = dati.map((d) => formattaNumero(d.valore))
+  const carattereMassimo = Math.max(...valoriFormattati.map((v) => v.length), 1)
+  const larghezzaAsseY = Math.min(64, Math.max(26, carattereMassimo * 7 + 6))
+
   return (
     <ResponsiveContainer width="100%" height={260}>
       <LineChart data={dati} margin={{ top: 10, right: 28, left: 0, bottom: 0 }}>
@@ -33,7 +42,7 @@ export default function IndicatorChart({ dati, unita }) {
           tick={{ fontSize: 12, fill: '#666666' }}
           axisLine={false}
           tickLine={false}
-          width={64}
+          width={larghezzaAsseY}
           tickFormatter={formattaNumero}
         />
         <Tooltip

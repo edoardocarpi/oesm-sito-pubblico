@@ -265,13 +265,7 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 .dati-nav-indicatori { border-top: 1px dashed var(--accent); margin-top: 4px; padding: 20px 0 24px; }
 .dati-contenuto { padding-bottom: 72px; }
 
-.indicatore-titolo {
-  margin-bottom: 28px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-}
+.indicatore-titolo { margin-bottom: 28px; }
 .indicatore-titolo h1 { font-size: 30px; }
 .btn-esporta {
   display: inline-flex;
@@ -297,10 +291,11 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 .indicatore-serie th:last-child, .indicatore-serie .valore-numerico { text-align: right; }
 .indicatore-serie td:first-child { color: var(--muted); }
 .indicatore-info { background: var(--surface); border-radius: 4px; padding: 20px 24px; }
-.info-riga { display: flex; gap: 16px; font-size: 14px; margin-bottom: 8px; }
+.info-riga { display: flex; gap: 16px; font-size: 14px; margin-bottom: 8px; align-items: center; }
 .info-riga:last-child { margin-bottom: 0; }
 .info-riga-nota { border-left: 2px solid var(--ambra); padding-left: 14px; margin-left: -16px; }
 .info-riga-nota .info-label { color: var(--ambra); }
+.info-riga-azione { padding-top: 8px; margin-top: 4px; border-top: 1px solid var(--line); }
 .info-label { color: var(--muted); min-width: 140px; flex-shrink: 0; }
 
 /* PAGINA SINGOLO ARTICOLO */

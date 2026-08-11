@@ -47,13 +47,6 @@ export default async function IndicatorePage({ params }) {
     <>
       <div className="indicatore-titolo">
         <h1>{meta.indicator_it}</h1>
-        <ExportButton
-          nome={meta.indicator_it}
-          code={meta.indicator_code}
-          fonte={meta.source}
-          unita={meta.unit_display}
-          valori={righe}
-        />
       </div>
 
       <div className="indicatore-grafico">
@@ -103,6 +96,15 @@ export default async function IndicatorePage({ params }) {
             <span>{nota}</span>
           </div>
         )}
+        <div className="info-riga info-riga-azione">
+          <ExportButton
+            nome={meta.indicator_it}
+            code={meta.indicator_code}
+            fonte={meta.source}
+            unita={meta.unit_display}
+            valori={righe}
+          />
+        </div>
       </div>
     </>
   )
