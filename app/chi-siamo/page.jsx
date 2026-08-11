@@ -32,7 +32,7 @@ export default async function ChiSiamoPage() {
     <>
       <Header attivo="chi-siamo" />
 
-      <section className="page-header">
+      <section className="page-header sezione-schermo">
         <div className="container">
           <div className="chi-siamo-immagine">
             <img src="/oesm-sanmarino.png" alt="Mappa di San Marino" />
@@ -46,7 +46,11 @@ export default async function ChiSiamoPage() {
               <p>{paragrafi[0] || 'Testo da inserire nel campo Missione, sezione Pagine del CMS.'}</p>
             </div>
           </div>
+        </div>
+      </section>
 
+      <section>
+        <div className="container">
           <div className="chi-siamo-sezione-due">
             <div className="chi-siamo-palazzo">
               <img src="/oesm-palazzo.png" alt="Il Palazzo Pubblico di San Marino" />

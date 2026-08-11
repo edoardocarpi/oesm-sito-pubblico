@@ -193,16 +193,14 @@ nav a:hover { color: var(--accent); }
 .chi-siamo-cella p { max-width: none; margin: 0; font-size: 17px; color: var(--muted); }
 
 .chi-siamo-sezione-due {
-  display: flex;
-  gap: 56px;
-  align-items: flex-start;
-  margin-top: 64px;
-  padding-bottom: 72px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 56px;
+  align-items: start;
+  padding: 48px 0 72px;
 }
-.chi-siamo-palazzo { flex: 0 0 320px; }
 .chi-siamo-palazzo img { width: 100%; height: auto; border-radius: 4px; display: block; }
-.chi-siamo-testo-resto { flex: 1; min-width: 260px; }
-.chi-siamo-testo-resto p { font-size: 17px; color: var(--muted); margin: 0 0 16px; }
+.chi-siamo-testo-resto p { font-size: 17px; color: var(--muted); margin: 0 0 16px; max-width: none; }
 .chi-siamo-testo-resto .footer-col-title { margin-top: 12px; }
 
 /* CONTATTI (Chi siamo) */
@@ -346,6 +344,6 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
   .about-teaser { flex-direction: column; align-items: flex-start; gap: 16px; }
   .chi-siamo-griglia { grid-template-columns: 1fr; row-gap: 16px; }
   .chi-siamo-cella { grid-column: 1 !important; grid-row: auto !important; }
-  .chi-siamo-sezione-due { flex-direction: column; margin-top: 40px; }
-  .chi-siamo-palazzo { flex: none; width: 100%; max-width: 240px; }
+  .chi-siamo-sezione-due { grid-template-columns: 1fr; row-gap: 16px; padding-top: 32px; }
+  .chi-siamo-palazzo { max-width: 240px; }
 }

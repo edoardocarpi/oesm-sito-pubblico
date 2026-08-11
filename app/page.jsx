@@ -83,7 +83,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="notizie sezione-schermo">
+      <section className="notizie">
         <div className="container">
           <div className="notizie-head">
             <h2>Ultime notizie</h2>
@@ -119,13 +119,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <Ticker
-        indicatori={INDICATORI_HOME.map((ind) => {
-          const riga = ultimoValorePerCodice[ind.code]
-          return { label: ind.label, valore: riga ? formattaValoreHome(ind.code, riga.value_display) : '—' }
-        })}
-      />
-
       <section className="about-teaser">
         <div className="container about-teaser">
           <p>{campi.teaser_about || 'Vuoi sapere di piu\' su chi siamo e come lavoriamo?'}</p>
@@ -134,6 +127,13 @@ export default async function HomePage() {
           </Link>
         </div>
       </section>
+
+      <Ticker
+        indicatori={INDICATORI_HOME.map((ind) => {
+          const riga = ultimoValorePerCodice[ind.code]
+          return { label: ind.label, valore: riga ? formattaValoreHome(ind.code, riga.value_display) : '—' }
+        })}
+      />
 
       <Footer />
     </>
