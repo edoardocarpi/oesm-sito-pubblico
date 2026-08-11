@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { supabase } from '../../../lib/supabaseClient'
 import IndicatorChart from '../../../components/IndicatorChart'
 import ExportButton from '../../../components/ExportButton'
+import { formattaValore, notaVaMostrata } from '../../../lib/utils'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -23,29 +24,30 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function IndicatorePage({ params }) {
-  const { data: righe } = await supabase
-    .from('indicatori_dati')
-    .select('*')
-    .eq('indicator_code', params.slug)
-    .order('year', { ascending: true })
+  const [{ data: righe }, { data: categorie }] = await Promise.all([
+    supabase.from('indicatori_dati').select('*').eq('indicator_code', params.slug).order('year', { ascending: true }),
+    supabase.from('categorie').select('slug, etichetta'),
+  ])
 
   if (!righe || righe.length === 0) {
     notFound()
   }
 
   const meta = righe[0]
+  const etichettaCategoria = categorie?.find((c) => c.slug === meta.category)?.etichetta || meta.category
   const righeConDati = righe.filter((r) => r.value_display && r.value_display !== 'null')
   const serie = righe
     .map((r) => ({ anno: r.year, valore: parseFloat(r.value_display) }))
     .filter((r) => !Number.isNaN(r.valore))
 
-  const nota = meta.conversion_note && meta.conversion_note !== 'null' ? meta.conversion_note : null
+  const notaGrezza = meta.conversion_note && meta.conversion_note !== 'null' ? meta.conversion_note : null
+  const nota = notaVaMostrata(notaGrezza) ? notaGrezza : null
 
   return (
     <>
       <div className="indicatore-titolo">
         <div>
-          <div className="eyebrow">{meta.category}</div>
+          <div className="eyebrow">{etichettaCategoria}</div>
           <h1>{meta.indicator_it}</h1>
         </div>
         <ExportButton
@@ -79,8 +81,8 @@ export default async function IndicatorePage({ params }) {
                 .map((r) => (
                   <tr key={r.year}>
                     <td>{r.year}</td>
-                    <td>
-                      {r.value_display} {r.unit_display}
+                    <td className="valore-numerico">
+                      {formattaValore(r.value_display)} {r.unit_display}
                     </td>
                   </tr>
                 ))}

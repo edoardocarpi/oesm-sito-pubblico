@@ -284,9 +284,11 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 
 .indicatore-grafico { border: 1px solid var(--line); border-radius: 4px; padding: 20px; margin-bottom: 32px; }
 .indicatore-serie { margin-bottom: 32px; }
-.indicatore-serie table { width: 100%; border-collapse: collapse; }
+.indicatore-serie table { width: 100%; max-width: 420px; border-collapse: collapse; }
 .indicatore-serie th, .indicatore-serie td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: 14px; }
 .indicatore-serie th { color: var(--muted); font-weight: normal; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+.indicatore-serie th:last-child, .indicatore-serie .valore-numerico { text-align: right; }
+.indicatore-serie td:first-child { color: var(--muted); }
 .indicatore-info { background: var(--surface); border-radius: 4px; padding: 20px 24px; }
 .info-riga { display: flex; gap: 16px; font-size: 14px; margin-bottom: 8px; }
 .info-riga:last-child { margin-bottom: 0; }
