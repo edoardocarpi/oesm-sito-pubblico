@@ -131,7 +131,7 @@ nav a:hover { color: var(--accent); }
   color: var(--muted);
   background: var(--paper);
 }
-.filtro-pill.active { border-color: var(--ink); color: var(--ink); }
+.filtro-pill.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 .filtro-pill:hover { border-color: var(--accent); color: var(--accent); }
 
 .notizie { padding: 72px 0; }

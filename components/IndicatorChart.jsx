@@ -21,7 +21,7 @@ export default function IndicatorChart({ dati, unita }) {
 
   return (
     <ResponsiveContainer width="100%" height={260}>
-      <LineChart data={dati} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+      <LineChart data={dati} margin={{ top: 10, right: 28, left: 0, bottom: 0 }}>
         <XAxis
           dataKey="anno"
           tick={{ fontSize: 12, fill: '#666666' }}
