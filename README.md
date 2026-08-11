@@ -1,41 +1,32 @@
-# Osservatorio Economico San Marino. Sito pubblico
+# Osservatorio Economico di San Marino
 
-Sito Next.js che legge in sola lettura dallo stesso Supabase usato dal CMS.
+**[oesm.net](https://oesm.net)**
 
-## Installazione
+L'Osservatorio Economico di San Marino (OESM) raccoglie, verifica e pubblica
+i principali indicatori macroeconomici della Repubblica di San Marino, in un
+unico posto, aggiornato e liberamente consultabile.
 
-```
-npm install
-cp .env.example .env.local
-```
-Incolla in `.env.local` gli stessi valori Supabase del CMS.
+Il progetto nasce per rendere piu' facile trovare e confrontare dati che
+oggi sono spesso frammentati tra piu' fonti — un riferimento pensato per
+ricercatori, giornalisti, imprenditori e istituzioni.
 
-```
-npm run dev
-```
-Si apre su `http://localhost:3000`.
+## Cosa contiene il sito
 
-## Immagini
+- **Dati**: serie storiche di oltre venti indicatori economici, organizzati
+per categoria (macroeconomia, lavoro, prezzi, commercio estero, finanza
+pubblica, turismo), con grafico, tabella dei valori ed esportazione in CSV.
+- **Notizie**: comunicati e analisi generati a partire dai dati pubblicati.
+- **Chi siamo**: missione del progetto e contatti.
 
-Le immagini statiche (logo, illustrazioni) vivono in `public/`. Quelle degli
-articoli (copertine, immagini nel corpo) vengono invece da Supabase Storage,
-caricate dal CMS.
+## Fonti e metodologia
 
-## Cache e aggiornamenti dal CMS
+Ogni indicatore riporta la propria fonte originale direttamente nella
+scheda. La metodologia completa e' consultabile su [oesm.net/metodologia](https://oesm.net/metodologia).
 
-Tutte le pagine hanno `export const dynamic = 'force-dynamic'`: Next.js
-rilegge sempre Supabase, non tiene mai in cache l'HTML generato. Le
-modifiche fatte dal CMS compaiono online alla visita successiva.
+## Stack tecnico
 
-Se qualcosa non si aggiorna nonostante questo, il sospetto numero uno e' la
-cache di build di Next.js:
-```
-rm -rf .next
-npm run dev
-```
+Next.js (App Router) e Supabase, ospitato su Vercel.
 
-## Deploy
+## Contatti
 
-Push su GitHub, importa il repository su Vercel, imposta le stesse
-variabili d'ambiente nel progetto Vercel (incluso `NEXT_PUBLIC_SITE_URL`
-con l'indirizzo vero una volta noto).
+info@oesm.net
