@@ -98,7 +98,7 @@ export default async function IndicatorePage({ params }) {
           <span>{meta.unit_display}</span>
         </div>
         {nota && (
-          <div className="info-riga">
+          <div className="info-riga info-riga-nota">
             <span className="info-label">Nota</span>
             <span>{nota}</span>
           </div>

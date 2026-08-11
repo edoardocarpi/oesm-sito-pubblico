@@ -42,28 +42,20 @@ export default async function ChiSiamoPage() {
             <div className="chi-siamo-cella" style={{ gridColumn: 1, gridRow: 1 }}>
               <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
             </div>
-            {paragrafi.length > 0 ? (
-              paragrafi.map((p, i) => (
-                <div
-                  key={i}
-                  className="chi-siamo-cella"
-                  style={{ gridColumn: i % 2 === 0 ? 2 : 1, gridRow: i + 2 }}
-                >
-                  <p>{p}</p>
-                </div>
-              ))
-            ) : (
-              <div className="chi-siamo-cella" style={{ gridColumn: 2, gridRow: 2 }}>
-                <p>Testo da inserire nel campo Missione, sezione Pagine del CMS.</p>
-              </div>
-            )}
+            <div className="chi-siamo-cella" style={{ gridColumn: 2, gridRow: 2 }}>
+              <p>{paragrafi[0] || 'Testo da inserire nel campo Missione, sezione Pagine del CMS.'}</p>
+            </div>
           </div>
 
-          <div className="chi-siamo-griglia chi-siamo-griglia-seconda">
-            <div className="chi-siamo-cella chi-siamo-palazzo" style={{ gridColumn: 1, gridRow: 1 }}>
+          <div className="chi-siamo-sezione-due">
+            <div className="chi-siamo-palazzo">
               <img src="/oesm-palazzo.png" alt="Il Palazzo Pubblico di San Marino" />
             </div>
-            <div className="chi-siamo-cella" style={{ gridColumn: 2, gridRow: 2 }}>
+            <div className="chi-siamo-testo-resto">
+              {paragrafi.slice(1).map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+
               <div className="footer-col-title">Contatti</div>
               {righeContatti.length > 0 ? (
                 righeContatti.map((riga, i) => (

@@ -7,6 +7,7 @@
   --accent: #1F51FF;
   --blu-castello: #0242fe;
   --blu-mappa: #023bfd;
+  --ambra: #D97A2E;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
@@ -43,6 +44,14 @@ nav { display: flex; gap: 32px; }
 nav a { font-size: 14px; color: var(--muted); }
 nav a.active { color: var(--ink); }
 nav a:hover { color: var(--accent); }
+
+/* Sezioni pensate per occupare una schermata intera (sotto l'header) */
+.sezione-schermo {
+  min-height: calc(100vh - 71px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 /* HERO (Home) */
 .hero { padding: 32px 0 40px; border-bottom: 1px solid var(--line); }
@@ -183,8 +192,18 @@ nav a:hover { color: var(--accent); }
 }
 .chi-siamo-cella p { max-width: none; margin: 0; font-size: 17px; color: var(--muted); }
 
-.chi-siamo-griglia-seconda { margin-top: 64px; padding-bottom: 72px; align-items: start; }
+.chi-siamo-sezione-due {
+  display: flex;
+  gap: 56px;
+  align-items: flex-start;
+  margin-top: 64px;
+  padding-bottom: 72px;
+}
+.chi-siamo-palazzo { flex: 0 0 320px; }
 .chi-siamo-palazzo img { width: 100%; height: auto; border-radius: 4px; display: block; }
+.chi-siamo-testo-resto { flex: 1; min-width: 260px; }
+.chi-siamo-testo-resto p { font-size: 17px; color: var(--muted); margin: 0 0 16px; }
+.chi-siamo-testo-resto .footer-col-title { margin-top: 12px; }
 
 /* CONTATTI (Chi siamo) */
 .contatti-riga { margin-bottom: 10px; font-size: 15px; }
@@ -282,6 +301,8 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 .indicatore-info { background: var(--surface); border-radius: 4px; padding: 20px 24px; }
 .info-riga { display: flex; gap: 16px; font-size: 14px; margin-bottom: 8px; }
 .info-riga:last-child { margin-bottom: 0; }
+.info-riga-nota { border-left: 2px solid var(--ambra); padding-left: 14px; margin-left: -16px; }
+.info-riga-nota .info-label { color: var(--ambra); }
 .info-label { color: var(--muted); min-width: 140px; flex-shrink: 0; }
 
 /* PAGINA SINGOLO ARTICOLO */
@@ -323,9 +344,8 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
   .dati-layout { grid-template-columns: 1fr; }
   .dati-sidebar { position: static; }
   .about-teaser { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .chi-siamo-griglia,
-  .chi-siamo-griglia-seconda { grid-template-columns: 1fr; row-gap: 16px; }
+  .chi-siamo-griglia { grid-template-columns: 1fr; row-gap: 16px; }
   .chi-siamo-cella { grid-column: 1 !important; grid-row: auto !important; }
-  .chi-siamo-griglia-seconda { margin-top: 40px; }
-  .chi-siamo-palazzo { max-width: 240px; }
+  .chi-siamo-sezione-due { flex-direction: column; margin-top: 40px; }
+  .chi-siamo-palazzo { flex: none; width: 100%; max-width: 240px; }
 }

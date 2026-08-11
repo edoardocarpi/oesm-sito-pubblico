@@ -59,7 +59,7 @@ export default async function HomePage() {
     <>
       <Header attivo="home" />
 
-      <section className="hero">
+      <section className="hero sezione-schermo">
         <div className="container">
           <div className="hero-immagine">
             <img src="/oesm-san-marino.png" alt="Illustrazione di San Marino" />
@@ -83,7 +83,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="notizie">
+      <section className="notizie sezione-schermo">
         <div className="container">
           <div className="notizie-head">
             <h2>Ultime notizie</h2>
