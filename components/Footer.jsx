@@ -2,10 +2,7 @@ import Link from 'next/link'
 import { supabase } from '../lib/supabaseClient'
 
 export default async function Footer() {
-  const [{ data: categorie }, { data: pagina }] = await Promise.all([
-    supabase.from('categorie').select('slug, etichetta').order('ordine', { ascending: true }),
-    supabase.from('pagine').select('campi').eq('id', 'chi-siamo').single(),
-  ])
+  const { data: pagina } = await supabase.from('pagine').select('campi').eq('id', 'chi-siamo').single()
 
   const contatti = pagina?.campi?.contatti || ''
   const righeContatti = contatti.split('\n').map((r) => r.trim()).filter(Boolean)
@@ -22,12 +19,11 @@ export default async function Footer() {
             <Link href="/chi-siamo">Chi siamo</Link>
           </div>
           <div className="footer-col">
-            <div className="footer-col-title">Dati per categoria</div>
-            {(categorie || []).map((c) => (
-              <Link key={c.slug} href="/dati">
-                {c.etichetta}
-              </Link>
-            ))}
+            <div className="footer-col-title">Note legali</div>
+            <Link href="/privacy">Privacy Policy</Link>
+            <Link href="/cookie-policy">Cookie Policy</Link>
+            <Link href="/metodologia">Metodologia</Link>
+            <Link href="/note-legali">Nota legale</Link>
           </div>
           <div className="footer-col">
             <div className="footer-col-title">Contatti</div>

@@ -17,6 +17,10 @@ export default async function sitemap() {
     { url: `${SITE_URL}/dati`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${SITE_URL}/notizie`, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/chi-siamo`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${SITE_URL}/privacy`, changeFrequency: 'yearly', priority: 0.1 },
+    { url: `${SITE_URL}/cookie-policy`, changeFrequency: 'yearly', priority: 0.1 },
+    { url: `${SITE_URL}/metodologia`, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${SITE_URL}/note-legali`, changeFrequency: 'yearly', priority: 0.1 },
   ]
 
   const paginaArticoli = (articoli || []).map((a) => ({
