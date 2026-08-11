@@ -4,6 +4,7 @@ import { SITE_URL } from '../lib/site'
 // Senza questo, la sitemap verrebbe generata una sola volta al momento della
 // build e non includerebbe mai i nuovi articoli o indicatori pubblicati dopo.
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function sitemap() {
   const [{ data: articoli }, { data: indicatori }] = await Promise.all([

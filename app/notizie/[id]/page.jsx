@@ -5,6 +5,7 @@ import { supabase } from '../../../lib/supabaseClient'
 import { estrattoTesto } from '../../../lib/utils'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata({ params }) {
   const { data: articolo } = await supabase

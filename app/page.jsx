@@ -20,6 +20,7 @@ function formattaValoreHome(code, valoreDisplay) {
 }
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata() {
   const { data: pagina } = await supabase.from('pagine').select('campi').eq('id', 'home').single()

@@ -4,6 +4,7 @@ import IndicatorChart from '../../../components/IndicatorChart'
 import ExportButton from '../../../components/ExportButton'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata({ params }) {
   const { data: righe } = await supabase

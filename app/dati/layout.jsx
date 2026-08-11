@@ -4,6 +4,7 @@ import DatiSidebar from '../../components/DatiSidebar'
 import { supabase } from '../../lib/supabaseClient'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export default async function DatiLayout({ children }) {
   const [{ data: righe }, { data: categorie }] = await Promise.all([
