@@ -36,18 +36,38 @@ button { font-family: inherit; }
 
 /* HEADER */
 header { border-bottom: 1px solid var(--line); padding: 22px 0; }
-.header-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+.header-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .logo-wrap { display: flex; align-items: center; gap: 9px; }
 .logo-icona { width: 26px; height: 26px; border-radius: 4px; display: block; }
 .logo { font-family: 'Epilogue', sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2; letter-spacing: 0.01em; }
-nav { display: flex; gap: 32px; }
+.nav-desktop { display: flex; gap: 32px; }
 nav a { font-size: 14px; color: var(--muted); }
 nav a.active { color: var(--ink); }
 nav a:hover { color: var(--accent); }
 
-/* Sezioni pensate per occupare una schermata intera (sotto l'header) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  line-height: 1;
+  padding: 4px;
+  color: var(--ink);
+  cursor: pointer;
+}
+.nav-mobile {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
+}
+.nav-mobile a { padding: 14px 32px; font-size: 15px; }
+
+/* Sezioni pensate per occupare una schermata intera (sotto l'header).
+   100dvh invece di 100vh: sui browser mobili la barra degli indirizzi che
+   appare/scompare fa "saltare" 100vh, dvh e' l'unita' pensata per questo. */
 .sezione-schermo {
   min-height: calc(100vh - 71px);
+  min-height: calc(100dvh - 71px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -333,6 +353,8 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 
 /* RESPONSIVE */
 @media (max-width: 800px) {
+  .nav-desktop { display: none; }
+  .menu-toggle { display: block; }
   .hero-titolo-col h1 { font-size: 26px; }
   .chi-siamo-griglia h1 { font-size: 26px; }
   .hero-immagine { height: 220px; margin-bottom: 24px; }
