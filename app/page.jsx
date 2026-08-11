@@ -76,19 +76,12 @@ export default async function HomePage() {
           </div>
 
           <div className="hero-azione">
-            <Link href="/dati" className="btn">
-              Vedi i dati
+            <Link href="/dati" className="link-arrow">
+              Vedi i dati &rarr;
             </Link>
           </div>
         </div>
       </section>
-
-      <Ticker
-        indicatori={INDICATORI_HOME.map((ind) => {
-          const riga = ultimoValorePerCodice[ind.code]
-          return { label: ind.label, valore: riga ? formattaValoreHome(ind.code, riga.value_display) : '—' }
-        })}
-      />
 
       <section className="notizie">
         <div className="container">
@@ -125,6 +118,13 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <Ticker
+        indicatori={INDICATORI_HOME.map((ind) => {
+          const riga = ultimoValorePerCodice[ind.code]
+          return { label: ind.label, valore: riga ? formattaValoreHome(ind.code, riga.value_display) : '—' }
+        })}
+      />
 
       <section className="about-teaser">
         <div className="container about-teaser">

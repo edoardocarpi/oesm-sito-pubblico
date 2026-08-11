@@ -67,17 +67,8 @@ nav a:hover { color: var(--accent); }
 .hero-sub:last-child { margin-bottom: 0; }
 
 .hero-azione { text-align: center; margin-top: 32px; }
-.btn {
-  display: inline-block;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: 2px;
-}
-.btn:hover { background: #333; }
 
-/* TICKER DATI, tra hero e notizie */
+/* TICKER DATI, tra notizie e about-teaser */
 .ticker-dati {
   background: var(--accent);
   color: #fff;
@@ -184,16 +175,18 @@ nav a:hover { color: var(--accent); }
 }
 .chi-siamo-immagine img { max-width: 100%; height: 100%; width: auto; object-fit: contain; display: block; }
 
-.chi-siamo-corpo {
+.chi-siamo-griglia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 56px;
   margin-top: 12px;
-  column-count: 2;
-  column-gap: 48px;
-  max-width: none;
 }
-.chi-siamo-corpo p { max-width: none; break-inside: avoid; margin: 0 0 14px; }
+.chi-siamo-cella p { max-width: none; margin: 0; font-size: 17px; color: var(--muted); }
+
+.chi-siamo-griglia-seconda { margin-top: 64px; padding-bottom: 72px; align-items: start; }
+.chi-siamo-palazzo img { width: 100%; height: auto; border-radius: 4px; display: block; }
 
 /* CONTATTI (Chi siamo) */
-.contatti { padding: 0 0 72px; }
 .contatti-riga { margin-bottom: 10px; font-size: 15px; }
 .contatti-riga a:hover { color: var(--accent); }
 
@@ -330,5 +323,9 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
   .dati-layout { grid-template-columns: 1fr; }
   .dati-sidebar { position: static; }
   .about-teaser { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .chi-siamo-corpo { column-count: 1; }
+  .chi-siamo-griglia,
+  .chi-siamo-griglia-seconda { grid-template-columns: 1fr; row-gap: 16px; }
+  .chi-siamo-cella { grid-column: 1 !important; grid-row: auto !important; }
+  .chi-siamo-griglia-seconda { margin-top: 40px; }
+  .chi-siamo-palazzo { max-width: 240px; }
 }
