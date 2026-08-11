@@ -39,7 +39,10 @@ export default async function Footer() {
           </div>
         </div>
         <div className="footer-bottom">
-          <div>&copy; {new Date().getFullYear()} Osservatorio Economico di San Marino</div>
+          <div className="footer-bottom-brand">
+            <img src="/oesm-logo-blue.png" alt="" className="logo-icona" />
+            <span>&copy; {new Date().getFullYear()} Osservatorio Economico di San Marino</span>
+          </div>
           <div>Dati aggiornati mensilmente</div>
         </div>
       </div>

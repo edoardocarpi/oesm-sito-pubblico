@@ -59,30 +59,29 @@ export default async function HomePage() {
       <Header attivo="home" />
 
       <section className="hero">
-        <div className="container hero-grid">
-          <div className="hero-testo">
-            <div className="eyebrow">Osservatorio Economico di San Marino</div>
+        <div className="container">
+          <div className="hero-immagine">
+            <img src="/oesm-san-marino.png" alt="Illustrazione di San Marino" />
+          </div>
+          <div className="hero-testo-centrato">
             <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
             {campi.sottotitolo && <p className="hero-sub">{campi.sottotitolo}</p>}
             {campi.intro && <p className="hero-sub">{campi.intro}</p>}
             <Link href="/dati" className="btn">
               Vedi i dati
             </Link>
-
-            <div className="data-strip">
-              {INDICATORI_HOME.map((ind) => {
-                const riga = ultimoValorePerCodice[ind.code]
-                return (
-                  <Link key={ind.code} href={`/dati/${ind.code}`} className="data-strip-item">
-                    <div className="data-strip-label">{ind.label}</div>
-                    <div className="data-strip-value">{riga ? formattaValoreHome(ind.code, riga.value_display) : '—'}</div>
-                  </Link>
-                )
-              })}
-            </div>
           </div>
-          <div className="hero-immagine">
-            <img src="/oesm-san-marino.png" alt="Illustrazione di San Marino" />
+
+          <div className="data-strip">
+            {INDICATORI_HOME.map((ind) => {
+              const riga = ultimoValorePerCodice[ind.code]
+              return (
+                <Link key={ind.code} href={`/dati/${ind.code}`} className="data-strip-item">
+                  <div className="data-strip-label">{ind.label}</div>
+                  <div className="data-strip-value">{riga ? formattaValoreHome(ind.code, riga.value_display) : '—'}</div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -125,15 +124,10 @@ export default async function HomePage() {
 
       <section className="about-teaser">
         <div className="container about-teaser">
-          <div className="about-teaser-immagine">
-            <img src="/oesm-sanmarino.png" alt="Mappa di San Marino" />
-          </div>
-          <div className="about-teaser-testo">
-            <p>{campi.teaser_about || 'Vuoi sapere di piu\' su chi siamo e come lavoriamo?'}</p>
-            <Link href="/chi-siamo" className="link-arrow">
-              Scopri di piu' su di noi &rarr;
-            </Link>
-          </div>
+          <p>{campi.teaser_about || 'Vuoi sapere di piu\' su chi siamo e come lavoriamo?'}</p>
+          <Link href="/chi-siamo" className="link-arrow">
+            Scopri di piu' su di noi &rarr;
+          </Link>
         </div>
       </section>
 

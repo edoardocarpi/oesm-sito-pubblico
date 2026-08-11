@@ -11,10 +11,13 @@ export default function Header({ attivo }) {
   return (
     <header>
       <div className="container header-row">
-        <Link href="/" className="logo">
-          Osservatorio Economico
-          <br />
-          di San Marino
+        <Link href="/" className="logo-wrap">
+          <img src="/oesm-logo-blue.png" alt="" className="logo-icona" />
+          <span className="logo">
+            Osservatorio Economico
+            <br />
+            di San Marino
+          </span>
         </Link>
         <nav>
           {VOCI.map((v) => (
