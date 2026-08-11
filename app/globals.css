@@ -191,12 +191,13 @@ nav a:hover { color: var(--accent); }
   margin-top: 12px;
 }
 .chi-siamo-cella p { max-width: none; margin: 0; font-size: 17px; color: var(--muted); }
+.chi-siamo-griglia h1 { font-size: 32px; }
 
 .chi-siamo-sezione-due {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 28px 56px;
-  align-items: start;
+  align-items: center;
   padding: 48px 0 72px;
 }
 .chi-siamo-palazzo img { width: 100%; height: auto; border-radius: 4px; display: block; }
@@ -333,6 +334,7 @@ footer { padding: 48px 0 40px; border-top: 1px solid var(--line); }
 /* RESPONSIVE */
 @media (max-width: 800px) {
   .hero-titolo-col h1 { font-size: 26px; }
+  .chi-siamo-griglia h1 { font-size: 26px; }
   .hero-immagine { height: 220px; margin-bottom: 24px; }
   .hero-corpo { flex-direction: column; gap: 16px; }
   .ticker-item { padding: 0 24px; }
