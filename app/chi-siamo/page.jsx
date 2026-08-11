@@ -33,7 +33,7 @@ export default async function ChiSiamoPage() {
     <>
       <Header attivo="chi-siamo" />
 
-      <section className="page-header sezione-schermo">
+      <section className="page-header chi-siamo-hero sezione-schermo">
         <div className="container">
           <div className="chi-siamo-immagine">
             <img src="/oesm-sanmarino.png" alt="Mappa di San Marino" />

@@ -36,7 +36,8 @@ button { font-family: inherit; }
 
 /* HEADER */
 header { padding-top: 22px; }
-.header-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.header-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 22px; }
+.header-linea { border-bottom: 1px solid var(--line); }
 .logo-wrap { display: flex; align-items: center; gap: 9px; }
 .logo-icona { width: 26px; height: 26px; border-radius: 4px; display: block; }
 .logo { font-family: 'Epilogue', sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2; letter-spacing: 0.01em; }
@@ -75,6 +76,7 @@ nav a:hover { color: var(--accent); }
 
 /* HERO (Home) */
 .hero { padding: 32px 0 40px; border-bottom: 1px solid var(--line); }
+.chi-siamo-hero { padding: 32px 0 40px; }
 .hero-immagine {
   width: 100%;
   height: 420px;

@@ -39,6 +39,8 @@ export default function Header({ attivo }) {
         </button>
       </div>
 
+      <div className="header-linea"></div>
+
       {menuAperto && (
         <nav className="nav-mobile">
           {VOCI.map((v) => (
