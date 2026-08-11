@@ -13,11 +13,7 @@ export default function Header({ attivo }) {
       <div className="container header-row">
         <Link href="/" className="logo-wrap">
           <img src="/oesm-logo-blue.png" alt="" className="logo-icona" />
-          <span className="logo">
-            Osservatorio Economico
-            <br />
-            di San Marino
-          </span>
+          <span className="logo">Osservatorio Economico di San Marino</span>
         </Link>
         <nav>
           {VOCI.map((v) => (
