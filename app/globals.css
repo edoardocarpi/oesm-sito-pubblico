@@ -35,8 +35,8 @@ button { font-family: inherit; }
 }
 
 /* HEADER */
-header { border-bottom: 1px solid var(--line); padding: 22px 0; }
-.header-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+header { padding-top: 22px; }
+.header-row { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
 .logo-wrap { display: flex; align-items: center; gap: 9px; }
 .logo-icona { width: 26px; height: 26px; border-radius: 4px; display: block; }
 .logo { font-family: 'Epilogue', sans-serif; font-weight: 500; font-size: 15px; line-height: 1.2; letter-spacing: 0.01em; }
@@ -58,10 +58,9 @@ nav a:hover { color: var(--accent); }
 .nav-mobile {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--line);
-  padding-top: 10px;
+  padding: 12px 0 16px;
 }
-.nav-mobile a { padding: 14px 32px; font-size: 15px; }
+.nav-mobile a { padding: 10px 32px; font-size: 15px; }
 
 /* Sezioni pensate per occupare una schermata intera (sotto l'header).
    100dvh invece di 100vh: sui browser mobili la barra degli indirizzi che
