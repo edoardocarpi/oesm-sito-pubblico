@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import Ticker from '../components/Ticker'
 import { supabase } from '../lib/supabaseClient'
 import { estrattoTesto } from '../lib/utils'
 
@@ -63,28 +64,31 @@ export default async function HomePage() {
           <div className="hero-immagine">
             <img src="/oesm-san-marino.png" alt="Illustrazione di San Marino" />
           </div>
-          <div className="hero-testo">
-            <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
-            {campi.sottotitolo && <p className="hero-sub">{campi.sottotitolo}</p>}
-            {campi.intro && <p className="hero-sub">{campi.intro}</p>}
+
+          <div className="hero-corpo">
+            <div className="hero-titolo-col">
+              <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
+            </div>
+            <div className="hero-testo">
+              {campi.sottotitolo && <p className="hero-sub">{campi.sottotitolo}</p>}
+              {campi.intro && <p className="hero-sub">{campi.intro}</p>}
+            </div>
+          </div>
+
+          <div className="hero-azione">
             <Link href="/dati" className="btn">
               Vedi i dati
             </Link>
           </div>
-
-          <div className="data-strip">
-            {INDICATORI_HOME.map((ind) => {
-              const riga = ultimoValorePerCodice[ind.code]
-              return (
-                <Link key={ind.code} href={`/dati/${ind.code}`} className="data-strip-item">
-                  <div className="data-strip-label">{ind.label}</div>
-                  <div className="data-strip-value">{riga ? formattaValoreHome(ind.code, riga.value_display) : '—'}</div>
-                </Link>
-              )
-            })}
-          </div>
         </div>
       </section>
+
+      <Ticker
+        indicatori={INDICATORI_HOME.map((ind) => {
+          const riga = ultimoValorePerCodice[ind.code]
+          return { label: ind.label, valore: riga ? formattaValoreHome(ind.code, riga.value_display) : '—' }
+        })}
+      />
 
       <section className="notizie">
         <div className="container">

@@ -37,9 +37,8 @@ export default async function ChiSiamoPage() {
           <div className="chi-siamo-immagine">
             <img src="/oesm-sanmarino.png" alt="Mappa di San Marino" />
           </div>
-          <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
-
           <div className="chi-siamo-corpo">
+            <h1>{campi.titolo || 'Titolo da inserire nella sezione Pagine del CMS'}</h1>
             {paragrafi.length > 0 ? (
               paragrafi.map((p, i) => <p key={i}>{p}</p>)
             ) : (
