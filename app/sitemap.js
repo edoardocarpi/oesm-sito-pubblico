@@ -7,9 +7,11 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function sitemap() {
-  const [{ data: articoli }, { data: indicatori }] = await Promise.all([
+  const [{ data: articoli }, { data: indicatori }, { data: temi }, { data: temiFonti }] = await Promise.all([
     supabase.from('articoli').select('id, data').eq('stato', 'pubblicato'),
     supabase.from('indicatori_dati').select('indicator_code'),
+    supabase.from('temi').select('slug'),
+    supabase.from('temi_fonti').select('indicator_code'),
   ])
 
   const paginesStatiche = [
@@ -30,12 +32,23 @@ export default async function sitemap() {
     priority: 0.6,
   }))
 
-  const codiciUnici = [...new Set((indicatori || []).map((i) => i.indicator_code))]
-  const paginaIndicatori = codiciUnici.map((code) => ({
+  // gli indicator_code assorbiti in un tema non vanno in sitemap: la loro
+  // pagina ora fa solo un redirect permanente, non è più la canonica
+  const codiciInTema = new Set((temiFonti || []).map((t) => t.indicator_code))
+  const codiciSingoliUnici = [...new Set((indicatori || []).map((i) => i.indicator_code))].filter(
+    (code) => !codiciInTema.has(code)
+  )
+  const paginaIndicatoriSingoli = codiciSingoliUnici.map((code) => ({
     url: `${SITE_URL}/dati/${code}`,
     changeFrequency: 'monthly',
     priority: 0.5,
   }))
 
-  return [...paginesStatiche, ...paginaArticoli, ...paginaIndicatori]
+  const paginaTemi = (temi || []).map((t) => ({
+    url: `${SITE_URL}/dati/${t.slug}`,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }))
+
+  return [...paginesStatiche, ...paginaArticoli, ...paginaIndicatoriSingoli, ...paginaTemi]
 }

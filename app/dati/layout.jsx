@@ -7,32 +7,48 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export default async function DatiLayout({ children }) {
-  const [{ data: righe }, { data: categorie }] = await Promise.all([
+  const [{ data: righe }, { data: categorie }, { data: temi }, { data: temiFonti }] = await Promise.all([
     supabase
       .from('indicatori_dati')
       .select('category, indicator_code, indicator_it, value_display')
       .order('indicator_code', { ascending: true }),
     supabase.from('categorie').select('slug, etichetta').order('ordine', { ascending: true }),
+    supabase.from('temi').select('slug, titolo, categoria'),
+    supabase.from('temi_fonti').select('tema_slug, indicator_code'),
   ])
 
-  // un indicatore compare nel menu solo se ha almeno un valore reale;
-  // altrimenti il link porterebbe a una pagina vuota
+  // gli indicator_code che fanno parte di un tema non vanno elencati anche
+  // come voce singola — altrimenti lo stesso concetto comparirebbe due volte
+  const codiciInTema = new Set((temiFonti || []).map((t) => t.indicator_code))
+
   const haDatiPerCodice = {}
   ;(righe || []).forEach((r) => {
     const haValore = r.value_display && r.value_display !== 'null'
     haDatiPerCodice[r.indicator_code] = haDatiPerCodice[r.indicator_code] || haValore
   })
 
-  const indicatoriUnici = new Map()
+  const indicatoriSingoliUnici = new Map()
   ;(righe || []).forEach((r) => {
-    if (!indicatoriUnici.has(r.indicator_code) && haDatiPerCodice[r.indicator_code]) {
-      indicatoriUnici.set(r.indicator_code, { code: r.indicator_code, nome: r.indicator_it, categoria: r.category })
+    if (codiciInTema.has(r.indicator_code)) return
+    if (!indicatoriSingoliUnici.has(r.indicator_code) && haDatiPerCodice[r.indicator_code]) {
+      indicatoriSingoliUnici.set(r.indicator_code, {
+        href: `/dati/${r.indicator_code}`,
+        nome: r.indicator_it,
+        categoria: r.category,
+      })
     }
   })
-  const listaIndicatori = Array.from(indicatoriUnici.values())
+
+  const vociTemi = (temi || []).map((t) => ({
+    href: `/dati/${t.slug}`,
+    nome: t.titolo,
+    categoria: t.categoria,
+  }))
+
+  const tutteLeVoci = [...vociTemi, ...Array.from(indicatoriSingoliUnici.values())]
 
   const slugCategorieOrdinate = (categorie || []).map((c) => c.slug)
-  const categorieExtra = [...new Set(listaIndicatori.map((i) => i.categoria))].filter(
+  const categorieExtra = [...new Set(tutteLeVoci.map((v) => v.categoria))].filter(
     (slug) => !slugCategorieOrdinate.includes(slug)
   )
 
@@ -40,9 +56,9 @@ export default async function DatiLayout({ children }) {
     .map((slug) => ({
       slug,
       etichetta: categorie?.find((c) => c.slug === slug)?.etichetta || slug,
-      indicatori: listaIndicatori.filter((i) => i.categoria === slug),
+      voci: tutteLeVoci.filter((v) => v.categoria === slug).sort((a, b) => a.nome.localeCompare(b.nome)),
     }))
-    .filter((g) => g.indicatori.length > 0)
+    .filter((g) => g.voci.length > 0)
 
   return (
     <>

@@ -4,15 +4,19 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+// gruppi: [{ slug, etichetta, voci: [{ href, nome }] }]
+// una "voce" è indifferentemente un tema multi-fonte o un indicatore singolo:
+// dal punto di vista della navigazione sono la stessa cosa, un concetto con
+// una pagina propria.
 export default function DatiNav({ gruppi }) {
   const pathname = usePathname()
 
   const categoriaDiOggi = () =>
-    gruppi.find((g) => g.indicatori.some((ind) => `/dati/${ind.code}` === pathname))?.slug || gruppi[0]?.slug
+    gruppi.find((g) => g.voci.some((v) => v.href === pathname))?.slug || gruppi[0]?.slug
 
   const [categoriaSelezionata, setCategoriaSelezionata] = useState(categoriaDiOggi)
 
-  // se si arriva da un link diretto a un indicatore di un'altra categoria,
+  // se si arriva da un link diretto a una voce di un'altra categoria,
   // la pillola di categoria giusta si seleziona da sola
   useEffect(() => {
     const corrente = categoriaDiOggi()
@@ -38,12 +42,11 @@ export default function DatiNav({ gruppi }) {
 
       {gruppoAttivo && (
         <div className="filtri dati-nav-indicatori">
-          {gruppoAttivo.indicatori.map((ind) => {
-            const href = `/dati/${ind.code}`
-            const attivo = pathname === href
+          {gruppoAttivo.voci.map((v) => {
+            const attivo = pathname === v.href
             return (
-              <Link key={ind.code} href={href} className={`filtro-pill ${attivo ? 'active' : ''}`}>
-                {ind.nome}
+              <Link key={v.href} href={v.href} className={`filtro-pill ${attivo ? 'active' : ''}`}>
+                {v.nome}
               </Link>
             )
           })}
