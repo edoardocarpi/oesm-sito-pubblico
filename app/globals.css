@@ -137,6 +137,15 @@ nav a:hover { color: var(--accent); }
 .filtro-pill:hover { border-color: var(--accent); color: var(--accent); }
 .filtro-pill.active:hover { color: #fff; }
 
+/* Livello indicatore in DatiNav: stile invertito rispetto al livello
+   categoria, per distinguere a colpo d'occhio i due piani di selezione. */
+.filtro-pill-indicatore.active {
+  background: var(--paper);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.filtro-pill-indicatore.active:hover { color: var(--accent); }
+
 .notizie { padding: 72px 0; }
 .notizie-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 36px; }
 .notizie-head h2 { font-size: 30px; }

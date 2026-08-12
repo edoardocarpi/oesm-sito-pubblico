@@ -5,9 +5,13 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 // gruppi: [{ slug, etichetta, voci: [{ href, nome }] }]
-// una "voce" è indifferentemente un tema multi-fonte o un indicatore singolo:
-// dal punto di vista della navigazione sono la stessa cosa, un concetto con
-// una pagina propria.
+//
+// Comportamento: di default (e ad ogni cambio pagina) la barra mostra solo
+// la categoria e l'indicatore correnti, in stile breadcrumb compatto —
+// non tutte le opzioni sempre a vista. Cliccando la pillola compatta di un
+// livello, quel livello si espande mostrando tutte le opzioni disponibili
+// (per scegliere qualcos'altro); scegliendone una, il livello si richiude
+// di nuovo alla vista compatta.
 export default function DatiNav({ gruppi }) {
   const pathname = usePathname()
 
@@ -15,41 +19,76 @@ export default function DatiNav({ gruppi }) {
     gruppi.find((g) => g.voci.some((v) => v.href === pathname))?.slug || gruppi[0]?.slug
 
   const [categoriaSelezionata, setCategoriaSelezionata] = useState(categoriaDiOggi)
+  const [categorieEspanse, setCategorieEspanse] = useState(false)
+  const [vociEspanse, setVociEspanse] = useState(false)
 
-  // se si arriva da un link diretto a una voce di un'altra categoria,
-  // la pillola di categoria giusta si seleziona da sola
+  // ad ogni nuova pagina si riparte dalla vista compatta: categoria e
+  // indicatore correnti in evidenza, il resto nascosto finché non lo si chiede
   useEffect(() => {
     const corrente = categoriaDiOggi()
     if (corrente) setCategoriaSelezionata(corrente)
+    setCategorieEspanse(false)
+    setVociEspanse(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   const gruppoAttivo = gruppi.find((g) => g.slug === categoriaSelezionata)
 
+  function selezionaCategoria(slug) {
+    setCategoriaSelezionata(slug)
+    setCategorieEspanse(false)
+    // se questa categoria non è quella della pagina che si sta guardando,
+    // non c'è ancora un indicatore "scelto" al suo interno — apriamo subito
+    // l'elenco per farlo scegliere, invece di indovinarne uno a caso
+    const haVoceAttivaQui = gruppi.find((g) => g.slug === slug)?.voci.some((v) => v.href === pathname)
+    setVociEspanse(!haVoceAttivaQui)
+  }
+
+  const voceAttiva = gruppoAttivo?.voci.find((v) => v.href === pathname) || gruppoAttivo?.voci[0]
+
   return (
     <div className="dati-nav">
       <div className="filtri">
-        {gruppi.map((g) => (
-          <button
-            key={g.slug}
-            className={`filtro-pill ${categoriaSelezionata === g.slug ? 'active' : ''}`}
-            onClick={() => setCategoriaSelezionata(g.slug)}
-          >
-            {g.etichetta}
-          </button>
-        ))}
+        {categorieEspanse
+          ? gruppi.map((g) => (
+              <button
+                key={g.slug}
+                className={`filtro-pill ${categoriaSelezionata === g.slug ? 'active' : ''}`}
+                onClick={() => selezionaCategoria(g.slug)}
+              >
+                {g.etichetta}
+              </button>
+            ))
+          : gruppoAttivo && (
+              <button className="filtro-pill active" onClick={() => setCategorieEspanse(true)}>
+                {gruppoAttivo.etichetta}
+              </button>
+            )}
       </div>
 
       {gruppoAttivo && (
         <div className="filtri dati-nav-indicatori">
-          {gruppoAttivo.voci.map((v) => {
-            const attivo = pathname === v.href
-            return (
-              <Link key={v.href} href={v.href} className={`filtro-pill ${attivo ? 'active' : ''}`}>
-                {v.nome}
-              </Link>
-            )
-          })}
+          {vociEspanse
+            ? gruppoAttivo.voci.map((v) => {
+                const attivo = pathname === v.href
+                return (
+                  <Link
+                    key={v.href}
+                    href={v.href}
+                    className={`filtro-pill filtro-pill-indicatore ${attivo ? 'active' : ''}`}
+                  >
+                    {v.nome}
+                  </Link>
+                )
+              })
+            : voceAttiva && (
+                <button
+                  className="filtro-pill filtro-pill-indicatore active"
+                  onClick={() => setVociEspanse(true)}
+                >
+                  {voceAttiva.nome}
+                </button>
+              )}
         </div>
       )}
     </div>
