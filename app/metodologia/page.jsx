@@ -24,108 +24,82 @@ export default function MetodologiaPage() {
         <div className="container container-stretta articolo-corpo">
           <h2>Fonti dei dati</h2>
           <p>
-            I dati pubblicati provengono da due fonti internazionali ufficiali, aggiornate in
-            modo automatico tramite le rispettive API pubbliche: il World Bank (World
-            Development Indicators) e il Fondo Monetario Internazionale (World Economic
-            Outlook). Non produciamo dati economici propri: raccogliamo, verifichiamo e
-            riorganizziamo dati gia' pubblicati da questi enti.
+            I dati pubblicati arrivano da due fonti internazionali ufficiali, aggiornate
+            automaticamente: il World Bank e il Fondo Monetario Internazionale. Non produciamo
+            dati economici propri: raccogliamo, verifichiamo e riorganizziamo dati già
+            pubblicati da questi enti. Ogni scheda indicatore riporta la fonte esatta di quel
+            dato, sotto il grafico.
           </p>
           <p>
-            Le pubblicazioni ufficiali dell'Ufficio Informatica, Tecnologia, Dati e Statistica
-            di San Marino (statistica.sm) e della Banca Centrale della Repubblica di San Marino
-            vengono monitorate quando escono nuovi bollettini, ma al momento non sono integrate
-            in modo automatico nella banca dati: pubblicano solo documenti PDF, non un formato
-            interrogabile. Ogni scheda indicatore riporta comunque sempre la fonte esatta di
-            quel dato specifico, sotto il grafico.
+            Le pubblicazioni ufficiali di San Marino (Ufficio Statistica, Banca Centrale) sono
+            solo documenti PDF, non un formato leggibile automaticamente: le monitoriamo, ma
+            oggi non fanno ancora parte della raccolta automatica dei dati.
           </p>
 
           <h2>Quando un indicatore ha più fonti</h2>
           <p>
-            Per alcuni concetti (ad esempio la crescita del PIL o l'inflazione) sia il World
-            Bank sia il Fondo Monetario Internazionale pubblicano una propria serie storica. In
-            questi casi la pagina mostra entrambe le fonti, selezionabili singolarmente o
-            insieme nel grafico e nella tabella. Le due serie possono differire leggermente per
-            via di metodologie di calcolo, tempistiche di revisione o fonti primarie diverse:
-            mostrarle affiancate, invece di sceglierne una sola, è una scelta di trasparenza
-            deliberata.
+            Per alcuni dati, come la crescita del PIL o l'inflazione, sia il World Bank sia il
+            Fondo Monetario Internazionale pubblicano una propria serie. In questi casi
+            mostriamo entrambe, selezionabili nel grafico e nella tabella, perché possono
+            differire leggermente e preferiamo lasciarti vedere entrambe piuttosto che
+            sceglierne una per te.
           </p>
 
           <h2>Conversione in euro</h2>
           <p>
-            Quando esiste una serie già pubblicata dalla fonte in euro (la valuta nazionale di
-            San Marino), la utilizziamo direttamente, senza alcuna conversione. Quando la fonte
-            pubblica un valore solo in dollari statunitensi, lo convertiamo in euro con il tasso
-            di cambio di riferimento medio annuo della Banca Centrale Europea, relativo
-            all'anno del dato stesso.
+            Quando una fonte pubblica già un dato in euro, lo usiamo così com'è. Quando lo
+            pubblica solo in dollari, lo convertiamo con il tasso di cambio medio annuo della
+            Banca Centrale Europea. Questo è possibile solo per gli anni già conclusi dal 1999
+            in poi: per gli anni futuri, o precedenti al 1999, non pubblichiamo un valore in
+            euro, perché non esiste un tasso di cambio reale da usare.
           </p>
           <p>
-            Questa conversione è disponibile solo per gli anni dal 1999 (introduzione
-            dell'euro) fino all'ultimo anno solare concluso: per gli anni precedenti o per le
-            proiezioni future non pubblichiamo un valore in euro, invece di calcolarne uno su
-            un tasso di cambio ipotetico. I valori espressi in parità di potere d'acquisto
-            (PPP) non vengono convertiti con un tasso di cambio: è un concetto economico
-            diverso, non una valuta.
+            I valori espressi in parità di potere d'acquisto non vengono convertiti: non sono
+            legati a un tasso di cambio.
           </p>
 
-          <h2>Dati stimati e proiezioni</h2>
+          <h2>Proiezioni</h2>
           <p>
-            Il Fondo Monetario Internazionale pubblica, insieme ai dati consuntivi, proiezioni
-            per gli anni futuri. Pubblichiamo queste proiezioni solo fino a un anno oltre quello
-            corrente: oltre quella soglia, per un'economia di piccole dimensioni come San
-            Marino, le proiezioni tendono a ripetere lo stesso valore su più anni per assenza di
-            un modello previsionale dedicato, e rischiano di dare un'impressione di precisione
-            che i dati non hanno davvero. Quando un valore pubblicato è una proiezione e non un
-            dato consuntivo, la scheda dell'indicatore lo segnala esplicitamente nella nota
-            sotto la tabella.
+            Il Fondo Monetario Internazionale pubblica anche proiezioni per gli anni futuri.
+            Mostriamo queste proiezioni solo per l'anno corrente e il successivo: più avanti
+            nel tempo, per un'economia piccola come San Marino, i numeri tendono a ripetersi
+            anno dopo anno e non aggiungono informazione utile. Quando un valore è una
+            proiezione e non un dato consuntivo, la pagina lo segnala nella nota sotto la
+            tabella.
           </p>
 
           <h2>Aggiornamento dei dati</h2>
           <p>
-            Un valore viene riscritto solo quando cambia davvero rispetto a quello già
-            pubblicato, non ad ogni verifica automatica. La data di ultimo aggiornamento
-            riflette quindi l'ultima volta in cui la fonte originale ha pubblicato un dato
-            nuovo o rivisto, non la frequenza con cui controlliamo le fonti.
+            Un valore viene aggiornato solo quando cambia davvero rispetto a quello già
+            pubblicato. La data di ultimo aggiornamento riflette quindi l'ultima volta che la
+            fonte ha pubblicato qualcosa di nuovo, non la frequenza con cui controlliamo i
+            dati.
           </p>
 
-          <h2>Limiti dei dati</h2>
+          <h2>Revisioni</h2>
           <p>
-            Le fonti originarie possono rivedere le proprie serie storiche nel tempo
-            (revisioni statistiche successive alla prima pubblicazione): è possibile che un
-            valore cambi leggermente rispetto a una versione precedente dello stesso dato. Per
-            usi ufficiali o decisioni rilevanti, raccomandiamo di verificare sempre il dato
+            Le fonti possono rivedere i propri dati storici nel tempo. Se un valore che avevi
+            consultato in passato oggi risulta leggermente diverso, è quasi sempre per questo
+            motivo. Per usi ufficiali o decisioni importanti, verifica sempre il dato
             direttamente presso la fonte originale.
           </p>
 
           <h2>Codice sorgente</h2>
           <p>
-            Il codice che estrae, verifica e normalizza i dati pubblicati su questo sito è
-            pubblico. Chiunque può controllare esattamente come nasce ogni numero sul{' '}
+            Il codice che raccoglie e verifica questi dati è pubblico, su{' '}
             <a href="https://github.com/edoardocarpi/oesm-pipeline" target="_blank" rel="noopener noreferrer">
-              repository della pipeline su GitHub
+              GitHub
             </a>.
           </p>
 
           <h2>Come citare questi dati</h2>
           <p>
-            Se riprendi un dato pubblicato su questo sito in un articolo, una ricerca o
-            un'analisi, ti chiediamo di citare sia l'Osservatorio sia la fonte originale del
-            dato, indicata nella scheda dell'indicatore. Un formato di citazione suggerito:
+            Se riprendi un dato pubblicato qui, cita sia l'Osservatorio sia la fonte originale
+            indicata nella scheda dell'indicatore. Ad esempio:
           </p>
           <p style={{ fontStyle: 'italic', color: 'var(--muted)' }}>
-            Osservatorio Economico di San Marino, dati [World Bank / Fondo Monetario
-            Internazionale], consultato il [data], https://www.oesm.net/dati/[codice pagina]
-          </p>
-          <p>
-            Per citazioni accademiche o giornalistiche che richiedono maggiore dettaglio
-            metodologico (criterio di conversione, distinzione tra dato consuntivo e
-            proiezione), questa stessa pagina può essere citata insieme al dato specifico.
-          </p>
-
-          <h2>Nessuna garanzia di accuratezza assoluta</h2>
-          <p>
-            I dati sono pubblicati "così come sono", con l'obiettivo di renderli più facili da
-            trovare e confrontare. L'Osservatorio non fornisce garanzie di completa accuratezza
-            e non si assume responsabilità per decisioni prese sulla base di questi dati.
+            Osservatorio Economico di San Marino, dati World Bank / Fondo Monetario
+            Internazionale, consultato il [data], oesm.net
           </p>
 
           <p style={{ color: 'var(--muted)', fontSize: 14, marginTop: 40 }}>
