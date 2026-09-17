@@ -73,6 +73,28 @@ export default async function ChiSiamoPage() {
               )}
             </div>
           </div>
+
+          <div className="chi-siamo-fondatore">
+            <img src="/edoardo-carpi.jpg" alt="Edoardo Carpi" className="fondatore-foto" />
+            <div>
+              <div className="fondatore-nome">Edoardo Carpi — Fondatore</div>
+              <p className="fondatore-bio">
+                Consulente in ambito Tax &amp; Corporate, con esperienza in Audit e Compliance, ha
+                fondato OESM per aiutare economisti, giornalisti e politici a reperire in modo
+                veloce ed affidabile i dati economici su San Marino. È laureato con lode in
+                Economia e Management all'Università di Parma, e sta conseguendo la Laurea
+                Magistrale in Economia all'Università Cattolica del Sacro Cuore.
+              </p>
+              <a
+                href="https://it.linkedin.com/in/edoardocarpi"
+                target="_blank"
+                rel="noreferrer"
+                className="link-arrow"
+              >
+                LinkedIn &rarr;
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
