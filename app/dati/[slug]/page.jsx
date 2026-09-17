@@ -4,6 +4,7 @@ import IndicatorChart from '../../../components/IndicatorChart'
 import TemaViewer from '../../../components/TemaViewer'
 import ExportButton from '../../../components/ExportButton'
 import { formattaValore, notaVaMostrata } from '../../../lib/utils'
+import { SITE_URL } from '../../../lib/site'
 
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
@@ -25,7 +26,7 @@ async function trovaTema(slug) {
   const codici = fontiRel.map((f) => f.indicator_code)
   const { data: righe } = await supabase
     .from('indicatori_dati')
-    .select('indicator_code, indicator_it, source, unit_display, year, value_display')
+    .select('indicator_code, indicator_it, source, unit_display, year, value_display, updated_at')
     .in('indicator_code', codici)
     .order('year', { ascending: true })
 
@@ -95,8 +96,32 @@ export default async function DatiPage({ params }) {
     })
     const serie = Object.values(perAnno).sort((a, b) => a.anno - b.anno)
 
+    // il piu' recente updated_at tra tutte le fonti che compongono il tema
+    const ultimoAggiornamento = righe.reduce((piuRecente, r) => {
+      if (!r.updated_at) return piuRecente
+      return !piuRecente || r.updated_at > piuRecente ? r.updated_at : piuRecente
+    }, null)
+
+    const datasetSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: tema.titolo,
+      description: `${tema.titolo} di San Marino: serie storica confrontata tra le fonti ufficiali disponibili (${fonti.map((f) => f.label).join(', ')}).`,
+      url: `${SITE_URL}/dati/${tema.slug}`,
+      creator: {
+        '@type': 'Organization',
+        name: 'Osservatorio Economico di San Marino',
+        url: SITE_URL,
+      },
+      ...(ultimoAggiornamento ? { dateModified: ultimoAggiornamento } : {}),
+    }
+
     return (
       <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchema) }}
+        />
         <div className="indicatore-titolo">
           <h1>{tema.titolo}</h1>
         </div>
@@ -131,8 +156,32 @@ export default async function DatiPage({ params }) {
   const notaGrezza = meta.conversion_note && meta.conversion_note !== 'null' ? meta.conversion_note : null
   const nota = notaVaMostrata(notaGrezza) ? notaGrezza : null
 
+  const ultimoAggiornamentoSingolo = righe.reduce((piuRecente, r) => {
+    if (!r.updated_at) return piuRecente
+    return !piuRecente || r.updated_at > piuRecente ? r.updated_at : piuRecente
+  }, null)
+
+  const datasetSchemaSingolo = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: meta.indicator_it,
+    description: `Serie storica di ${meta.indicator_it} per San Marino, fonte ${meta.source}, unita' di misura ${meta.unit_display}.`,
+    url: `${SITE_URL}/dati/${meta.indicator_code}`,
+    creator: {
+      '@type': 'Organization',
+      name: 'Osservatorio Economico di San Marino',
+      url: SITE_URL,
+    },
+    ...(ultimoAggiornamentoSingolo ? { dateModified: ultimoAggiornamentoSingolo } : {}),
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(datasetSchemaSingolo) }}
+      />
+
       <div className="indicatore-titolo">
         <h1>{meta.indicator_it}</h1>
       </div>

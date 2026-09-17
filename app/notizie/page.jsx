@@ -10,14 +10,17 @@ const PER_PAGINA = 6
 
 export async function generateMetadata({ searchParams }) {
   const categoriaAttiva = searchParams?.categoria || ''
+  const alternates = { types: { 'application/rss+xml': '/notizie/feed.xml' } }
+
   if (!categoriaAttiva) {
-    return { title: 'Notizie', description: "Comunicati e analisi sull'economia di San Marino." }
+    return { title: 'Notizie', description: "Comunicati e analisi sull'economia di San Marino.", alternates }
   }
   const { data: categoria } = await supabase.from('categorie').select('etichetta').eq('slug', categoriaAttiva).single()
   const etichetta = categoria?.etichetta || categoriaAttiva
   return {
     title: `Notizie · ${etichetta}`,
     description: `Notizie ed analisi sull'economia di San Marino nella categoria ${etichetta}.`,
+    alternates,
   }
 }
 
